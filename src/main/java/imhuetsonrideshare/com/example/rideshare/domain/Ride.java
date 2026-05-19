@@ -1,6 +1,9 @@
 package imhuetsonrideshare.com.example.rideshare.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -22,14 +25,17 @@ public class Ride {
 
     @Getter
     @Setter
+    @NotBlank
     private String pickupLocation;
 
     @Getter
     @Setter
+    @NotBlank
     private String destinationCampus;
 
     @Getter
     @Setter
+    @FutureOrPresent
     private LocalDate rideDate;
 
     @Getter
@@ -38,6 +44,7 @@ public class Ride {
 
     @Getter
     @Setter
+    @Min(1)
     private int maxPassengers;
 
     @Getter

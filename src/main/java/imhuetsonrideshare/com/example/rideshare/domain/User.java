@@ -1,6 +1,8 @@
 package imhuetsonrideshare.com.example.rideshare.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,18 +18,22 @@ public class User {
 
     @Getter
     @Setter
+    @NotBlank
     private String username;
 
     @Getter
     @Setter
+    @NotBlank
     private String password;
 
     @Getter
     @Setter
+    @NotBlank
     private String fullName;
 
     @Getter
     @Setter
+    @Email
     private String email;
 
     @Getter

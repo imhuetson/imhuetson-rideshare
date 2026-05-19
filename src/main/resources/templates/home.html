@@ -4,7 +4,7 @@
 <head th:replace="~{fragments :: head}">
 </head>
 
-<body id="pageCenter">
+<body id="pageCenter" class="container mt-5">
 <div th:replace="~{fragments :: header}"></div>
 
 <main>
@@ -13,6 +13,7 @@
     <p>We help students safely travel between campuses,
         and around the Omaha area!</p>
     <p>Create + Join rides.</p>
+    <a th:href="@{/rides}">Create ride</a>
     <p>Stay Connected with your peers!</p>
 </main>
 
