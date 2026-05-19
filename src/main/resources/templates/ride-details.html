@@ -35,6 +35,8 @@
         <span th:text="${ride.maxPassengers}"></span>
     </p>
 
+    <a th:href="@{'/drivers/' + ${ride.driver.id}}">View Driver</a>
+
     <form th:action="@{/rides/{id}/join(id=${ride.id})}" method="post">
         <button type="submit">Join Ride</button>
     </form>

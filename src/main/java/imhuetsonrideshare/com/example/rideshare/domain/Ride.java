@@ -53,4 +53,8 @@ public class Ride {
     @Setter
     @ManyToMany
     private List<User> passengers = new ArrayList<>();
+
+    @Getter
+    @Setter
+    private boolean completed;
 }
