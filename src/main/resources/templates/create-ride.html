@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head">
+<head th:replace="~{fragments :: head}">
 </head>
 <body id="pageCenter">
-<div th:replace="fragments :: header"></div>
+<div th:replace="~{fragments :: header}"></div>
 <main>
     <h2>Create Ride</h2>
 
     <form th:action="@{/rides/create}" method="post">
-        <label for="fromLocation">From:</label>
+        <label for="pickupLocation">From:</label>
         <input type="text"
-               id="fromLocation"
-               name="fromLocation"
-               placeholder="From Location"
+               id="pickupLocation"
+               name="pickupLocation"
+               placeholder="Pickup At"
+               th:field="*{ride.pickupLocation}"
                required/>
         <br><br>
 
@@ -22,22 +23,25 @@
                id="destinationCampus"
                name="destinationCampus"
                placeholder="Destination Campus"
+               th:field="*{ride.destinationCampus}"
                required/>
         <br><br>
 
-        <label for="departureTime">Departure Time:</label>
-        <input type="datetime-local"
-               id="departureTime"
-               name="departureTime"
-               placeholder="Departure Time"
+        <label for="rideDate">Ride Day:</label>
+        <input type="date"
+               id="rideDate"
+               name="rideDate"
+               placeholder="Ride Day"
+               th:field="*{ride.rideDate}"
                required/>
         <br><br>
 
-        <label for="arrivalTime">Arrival Time:</label>
-        <input type="datetime-local"
-               id="arrivalTime"
-               name="arrivalTime"
-               placeholder="Arriver Time"
+        <label for="rideTime">Arrival Time:</label>
+        <input type="time"
+               id="rideTime"
+               name="rideTime"
+               placeholder="Arrive by"
+               th:field="*{ride.rideTime}"
                required/>
         <br><br>
 
@@ -47,6 +51,7 @@
                name="maxPassengers"
                placeholder="Maximum Passengers"
                min="1"
+               th:field="*{ride.maxPassengers}"
                required/>
         <br><br>
 
@@ -54,6 +59,6 @@
 
     </form>
 </main>
-<footer th:replace="fragments :: footer"></footer>
+<footer th:replace="~{fragments :: footer}"></footer>
 </body>
 </html>

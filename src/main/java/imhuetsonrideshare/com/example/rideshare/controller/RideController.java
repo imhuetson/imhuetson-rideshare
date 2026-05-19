@@ -1,57 +1,100 @@
 package imhuetsonrideshare.com.example.rideshare.controller;
 
 
+import imhuetsonrideshare.com.example.rideshare.data.RideRepository;
 import imhuetsonrideshare.com.example.rideshare.data.UserRepository;
+import imhuetsonrideshare.com.example.rideshare.domain.Ride;
 import imhuetsonrideshare.com.example.rideshare.domain.User;
 import imhuetsonrideshare.com.example.rideshare.service.RideService;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/rides")
 public class RideController {
-    private final RideService rideService;
+    private final RideRepository rideRepo;
     private final UserRepository userRepo;
 
-    public RideController(RideService rideService,
+    public RideController(RideRepository rideRepo,
                           UserRepository userRepo) {
 
-        this.rideService = rideService;
+        this.rideRepo = rideRepo;
         this.userRepo = userRepo;
     }
 
-    @PostMapping("/rides/{id}/signup")
-    public String signupRide(@PathVariable Long id,
-                             @AuthenticationPrincipal UserDetails userDetails) {
-        User passenger = new User();
+    @GetMapping
+    public String viewRides(Model model) {
+        model.addAttribute("rides", rideRepo.findAll());
 
-        passenger.setUsername(userDetails.getUsername());
-
-        rideService.signupPassenger(id, passenger);
-
-        return "redirect:/rides/";
+        return "rides";
     }
 
-    @PostMapping("/rides/{id}/cancel")
+    @GetMapping("/create")
+    public String createRide(Model model) {
+        model.addAttribute("ride", new Ride());
+        return "create-ride";
+    }
+
+    @PostMapping("/create")
+    public String createRide(@ModelAttribute Ride ride,
+                             Authentication authentication) {
+        Optional<User> driver = userRepo.findByUsername(authentication.getName());
+
+        ride.setDriver(driver.get());
+
+        if(ride.getPassengers() == null) {
+            ride.setPassengers(new ArrayList<>());
+        }
+
+        ride.setCancelled(false);
+
+        rideRepo.save(ride);
+
+        return "redirect:/rides";
+    }
+
+    @GetMapping("/{id}")
+    public String rideDetails(@PathVariable Long id, Model model) {
+        Ride ride = rideRepo.findById(id).orElse(null);
+
+        if(ride == null) {
+            return "redirect:/rides";
+        }
+
+        model.addAttribute("ride", ride);
+
+        return "ride-details";
+    }
+
+    @PostMapping("/{id}/join")
+    public String joinRide(@PathVariable Long id, Authentication authentication) {
+        Ride ride = rideRepo.findById(id).orElse(null);
+
+        Optional<User> user = userRepo.findByUsername(authentication.getName());
+
+        if(ride != null && user.isPresent()) {
+            ride.getPassengers().add(user.get());
+
+            rideRepo.save(ride);
+        }
+        return "redirect:/rides" + id;
+    }
+
+    @PostMapping("/{id}/cancel")
     public String cancelRide(@PathVariable Long id) {
-        rideService.cancelRide(id);
+        Ride ride = rideRepo.findById(id).orElse(null);
 
-        return "redirect:/rides/";
-    }
-
-    @GetMapping("/drivers/{id}")
-    public String driverProfile(@PathVariable Long id,
-                                Model model) {
-        User driver = userRepo.findById(id).orElseThrow();
-
-        model.addAttribute("user", driver);
-
-        return "driver-profile";
+        if(ride != null) {
+            ride.setCancelled(true);
+            rideRepo.save(ride);
+        }
+        return "redirect:/rides" + id;
     }
 }

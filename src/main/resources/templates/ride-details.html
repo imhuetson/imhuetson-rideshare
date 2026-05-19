@@ -10,12 +10,12 @@
 
     <p>
         <strong>From:</strong>
-        <span th:text="${ride.fromLocation}"></span>
+        <span th:text="${ride.pickupLocation}"></span>
     </p>
 
     <p>
         <strong>To:</strong>
-        <span th:text="${ride.toCampus}"></span>
+        <span th:text="${ride.destinationCampus}"></span>
     </p>
 
     <p>
@@ -37,12 +37,12 @@
 
     <a th:href="@{'/drivers/' + ${ride.driver.id}}">View Driver</a>
 
-    <form th:action="@{/rides/{id}/join(id=${ride.id})}" method="post">
+    <form th:action="@{/rides/{id}/join(id=${ride.id})}" method="post" th:object="${join}">
         <button type="submit">Join Ride</button>
     </form>
     <br>
 
-    <form th:action="@{/rides/{id}/cancel(id=${ride.id})}" method="post">
+    <form th:action="@{/rides/{id}/cancel(id=${ride.id})}" method="post" th:object="${cancel}">
         <button type="submit">Cancel Ride</button>
     </form>
 </main>

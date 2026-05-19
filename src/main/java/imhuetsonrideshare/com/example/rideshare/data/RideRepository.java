@@ -8,9 +8,5 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface RideRepository extends CrudRepository<Ride, Long> {
-    List<Ride> findByDestinationCampus(String campus);
-
-    List<Ride> findByRideDate(LocalDate date);
-
     List<Ride> findByDriver(User driver);
 }
