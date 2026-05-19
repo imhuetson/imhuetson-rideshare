@@ -1,0 +1,153 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff7fb;
+    color: #333;
+}
+
+#pageCenter {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    min-height: 100vh;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+header {
+    background: linear-gradient(to right, #ff7eb9, #ffb6d9);
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    background-color: rgba(255,255,255,0.2);
+    margin: 5px;
+    border-radius: 12px;
+    display: inline-block;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: white;
+    color: #ff5fa2;
+}
+
+main {
+    width: 80%;
+    margin: 3px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #ff5fa2;
+}
+
+h3 {
+    color: #4caf7d;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th {
+    background-color: #ffb6d9;
+    color: #333;
+    padding: 12px;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+table tr:hover {
+    background-color: #fff0f7;
+}
+
+input,
+button {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    width: 250px;
+    font-size: 1rem;
+}
+
+button {
+    background: linear-gradient(to right, #ff7eb9, #ffb6d9);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+a {
+    color: #ff4f9a;
+}
+
+a:hover {
+    color: #ffb6d9;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #ffe3f1;
+}
+
+.imageRight {
+    float: right;
+    border-radius: 15px;
+    margin-left: 20px;
+    box-shadow: 0 0px 10px rgba(0,0,0,0.2);
+}
+
+form {
+    background: #fff5f9;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #ffd1e3;
+    max-width: 500px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #fff0f7;
+    margin: 10px auto;
+    padding: 12px;
+    border-left: 5px solid #7ed957;
+    border-radius: 8px;
+}
+
