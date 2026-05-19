@@ -33,7 +33,7 @@ public class RideController {
     public String createRide(Ride ride) {
         rideRepo.save(ride);
         producer.sendMessage(
-                "New ride to " + ride.getToCampus() + "has been created.");
+                "New ride to " + ride.getDestinationCampus() + "has been created.");
 
         return "redirect:/rides";
     }
