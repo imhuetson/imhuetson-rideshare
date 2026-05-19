@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS ride (
     ride_time TIME,
     max_passengers INT,
     cancelled BOOLEAN,
+    completed BOOLEAN,
     driver_id BIGINT,
     CONSTRAINT fk_driver FOREIGN KEY (driver_id) REFERENCES users(id)
 );

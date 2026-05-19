@@ -20,7 +20,7 @@ VALUES
      'ADMIN'
     );
 
-INSERT INTO user (username, password, full_name, email, role)
+INSERT INTO users (username, password, full_name, email, role)
 
 VALUES
     (
