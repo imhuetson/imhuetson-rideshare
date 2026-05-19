@@ -10,19 +10,35 @@
 
     <form th:action="@{/rides/create}" method="post">
         <label for="fromLocation">From:</label>
-        <input type="text" id="fromLocation" name="fromLocation" placeholder="From Location" required/>
+        <input type="text"
+               id="fromLocation"
+               name="fromLocation"
+               placeholder="From Location"
+               required/>
         <br><br>
 
-        <label for="toCampus">Destination Campus:</label>
-        <input type="text" id="toCampus" name="toCampus" placeholder="Destination Campus" required/>
+        <label for="destinationCampus">Destination Campus:</label>
+        <input type="text"
+               id="destinationCampus"
+               name="destinationCampus"
+               placeholder="Destination Campus"
+               required/>
         <br><br>
 
         <label for="departureTime">Departure Time:</label>
-        <input type="datetime-local" id="departureTime" name="departureTime" placeholder="Departure Time" required/>
+        <input type="datetime-local"
+               id="departureTime"
+               name="departureTime"
+               placeholder="Departure Time"
+               required/>
         <br><br>
 
         <label for="arrivalTime">Arrival Time:</label>
-        <input type="datetime-local" id="arrivalTime" name="arrivalTime" placeholder="Arriver Time" required/>
+        <input type="datetime-local"
+               id="arrivalTime"
+               name="arrivalTime"
+               placeholder="Arriver Time"
+               required/>
         <br><br>
 
         <label for="maxPassengers">Maximum Passengers:</label>
