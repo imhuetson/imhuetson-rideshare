@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}">
+</head>
+
+<body id="pageCenter">
+<div th:replace="~{fragments :: header}"></div>
+
+<main>
+    <h2>User Profile</h2>
+
+    <h3 th:text="${user.fullName}"></h3>
+
+    <p>Username:
+        <span th:text="${user.username}"></span>
+    </p>
+
+    <p>Email:
+        <span th:text="${user.email}"></span>
+    </p>
+
+    <div th:if="${user.profileImage != null}">
+        <img width="200" th:src="'data:image/jpeg;base64,' +
+            ${T(java.util.Base64)
+            .getEncoder()
+            .encodeToString(user.profileImage)}">
+    </div>
+
+    <form th:action="@{/profile/upload}" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <button type="submit">Upload Image</button>
+    </form>
+
+    <h2>Ride History</h2>
+    <ul>
+        <li th:each="ride : ${rides}">
+            <span th:text="${ride.destinationCampus}"></span>
+        </li>
+    </ul>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

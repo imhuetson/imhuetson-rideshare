@@ -34,4 +34,9 @@ public class User {
     @Setter
     private String role;
 
+    @Getter
+    @Setter
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] profileImage;
 }
