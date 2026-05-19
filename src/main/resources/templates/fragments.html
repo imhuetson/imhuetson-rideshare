@@ -4,7 +4,7 @@
 <head th:fragment="head">
     <meta charset="UTF-8">
     <title>Ride Share App</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/static/styles.css}">
 </head>
 <body>
 
@@ -13,20 +13,21 @@
 
     <nav>
         <a th:href="@{/}">Home</a>
-        <br>
+
         <a th:href="@{/rides}">View Rides</a>
 
         <a th:href="@{/rides/create}">Start Ride</a>
-        <br>
-        <a th:href="@{/login}">Login</a>
-
-        <a th:href="@{/logout}">Logout</a>
 
         <a th:href="@{/register}">Register</a>
 
         <a th:href="@{/profile}">My Account</a>
-        <br>
-        <a th:href="@{/admin/dashboard}">Admin Dashboard</a>
+
+        <br><br>
+
+        <a th:href="@{/login}">Login</a>
+
+        <a th:href="@{/logout}">Logout</a>
+
     </nav>
 
     <hr>
