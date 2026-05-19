@@ -15,7 +15,7 @@ public class UserService {
         this.encoder = encoder;
     }
 
-    public User regiser(User user) {
+    public User register(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
 
         user.setRole("USER");

@@ -5,6 +5,7 @@ import imhuetsonrideshare.com.example.rideshare.domain.User;
 import imhuetsonrideshare.com.example.rideshare.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AuthController {
-    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
-    public AuthController(UserService userService) {
-        this.userService = userService;
+    public AuthController(PasswordEncoder passwordEncoder, UserRepository userRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/login")
@@ -33,13 +36,10 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute User user,
-                               BindingResult result) {
-        if (result.hasErrors()) {
-            return "register";
-        }
+    public String registerUser(@ModelAttribute User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        userService.regiser(user);
+        userRepository.save(user);
 
         return "redirect:/login";
     }
