@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}">
+</head>
+<body id="pageCenter">
+<div th:replace="~{fragments :: header}"></div>
+<main>
+    <h2>Ride Details</h2>
+
+    <p>
+        <strong>From:</strong>
+        <span th:text="${ride.fromLocation}"></span>
+    </p>
+
+    <p>
+        <strong>To:</strong>
+        <span th:text="${ride.toCampus}"></span>
+    </p>
+
+    <p>
+        <strong>Departure:</strong>
+        <span th:text="${ride.departureTime}"></span>
+    </p>
+
+    <p>
+        <strong>Arrival:</strong>
+        <span th:text="${ride.arrivalTime}"></span>
+    </p>
+
+    <p>
+        <strong>Passengers:</strong>
+        <span th:text="${ride.passengers.size()}"></span>
+        <br>
+        <span th:text="${ride.maxPassengers}"></span>
+    </p>
+
+    <form th:action="@{/rides/{id}/join(id=${ride.id})}" method="post">
+        <button type="submit">Join Ride</button>
+    </form>
+    <br>
+
+    <form th:action="@{/rides/{id}/cancel(id=${ride.id})}" method="post">
+        <button type="submit">Cancel Ride</button>
+    </form>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

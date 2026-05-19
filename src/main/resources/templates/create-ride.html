@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}">
+</head>
+<body id="pageCenter">
+<div th:replace="~{fragments :: header}"></div>
+<main>
+    <h2>Create Ride</h2>
+
+    <form th:action="@{/rides/create}" method="post">
+        <label for="fromLocation">From:</label>
+        <input type="text" id="fromLocation" name="fromLocation" placeholder="From Location" required/>
+        <br><br>
+
+        <label for="toCampus">Destination Campus:</label>
+        <input type="text" id="toCampus" name="toCampus" placeholder="Destination Campus" required/>
+        <br><br>
+
+        <label for="departureTime">Departure Time:</label>
+        <input type="datetime-local" id="departureTime" name="departureTime" placeholder="Departure Time" required/>
+        <br><br>
+
+        <label for="arrivalTime">Arrival Time:</label>
+        <input type="datetime-local" id="arrivalTime" name="arrivalTime" placeholder="Arriver Time" required/>
+        <br><br>
+
+        <label for="maxPassengers">Maximum Passengers:</label>
+        <input type="number"
+               id="maxPassengers"
+               name="maxPassengers"
+               placeholder="Maximum Passengers"
+               min="1"
+               required/>
+        <br><br>
+
+        <button type="submit">Create Ride</button>
+
+    </form>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

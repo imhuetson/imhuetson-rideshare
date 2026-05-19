@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}">
+</head>
+<body id="pageCenter">
+<div th:replace="~{fragments :: header}"></div>
+<main>
+    <h2>Available Rides</h2>
+
+    <a th:href="@{/rides/create}">Create New Ride</a>
+    <br><br>
+
+    <table border="1">
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>Passengers</th>
+            <th>Status</th>
+            <th>Details</th>
+        </tr>
+
+        <tr th:each="ride: ${rides}">
+            <td th:text="${ride.fromLocation}"></td>
+            <td th:text="${ride.toCampus}"></td>
+            <td th:text="${ride.departureTime}"></td>
+            <td th:text="${ride.arrivalTime}"></td>
+
+            <td>
+                <span th:text="@{ride.passengers.size()}"></span>
+                <span th:text="${ride.maxPassengers}"></span>
+            </td>
+
+            <td>
+                <span th:if="${ride.cancelled}">Cancelled</span>
+                <span th:unless="${ride.cancelled}">Active</span>
+            </td>
+
+            <td>
+                <a th:href="@{/rides/{id} (id=${ride.id})}">View</a>
+            </td>
+        </tr>
+    </table>
+</main>
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>

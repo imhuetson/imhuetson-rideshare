@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head}">
+</head>
+
+<body id="pageCenter">
+<div th:replace="~{fragments :: header}"></div>
+
+<main>
+    <h2>Need a Ride?</h2>
+    <img class="imageRight" th:src="@{/Images/}" width="350" height="250" alt="">
+    <p>We help students safely travel between campuses,
+        and around the Omaha area!</p>
+    <p>Create + Join rides.</p>
+    <p>Stay Connected with your peers!</p>
+</main>
+
+<footer th:replace="~{fragments :: footer}"></footer>
+</body>
+</html>
